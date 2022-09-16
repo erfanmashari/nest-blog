@@ -96,13 +96,33 @@ export class BlogsService {
     return responseObject;
   }
 
-  async update(id: number, blog: Blog): Promise<APIResponse> {
-    const updateBlog = await this.blogsRepository.update(id, blog);
-    return {
+  async update(
+    id: number,
+    blog: Blog,
+    response: Response,
+  ): Promise<APIResponse> {
+    const updateBlog = await this.blogsRepository.update(id, {
+      title: blog.title,
+      snippet: blog.snippet,
+      body: blog.body,
+    });
+
+    let responseObject: APIResponse = {
       status: 200,
       data: {
         message: 'Blog deatils updated successfully!',
       },
     };
+
+    if (!updateBlog.affected) {
+      response.status(404);
+      responseObject = {
+        status: 404,
+        data: {
+          message: 'No blog found with this ID!',
+        },
+      };
+    }
+    return responseObject;
   }
 }

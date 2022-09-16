@@ -50,7 +50,8 @@ export class BlogsController {
   async update(
     @Param('id') id: number,
     @Body() updateBlogDto: CreateBlogDto,
+    @Res({ passthrough: true }) response: Response,
   ): Promise<APIResponse> {
-    return await this.blogsService.update(id, updateBlogDto);
+    return await this.blogsService.update(id, updateBlogDto, response);
   }
 }
