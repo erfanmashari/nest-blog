@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { BlogsModule } from './blogs/blogs.module';
 import { BlogEntity } from './blogs/blog.entity';
 import { dbUsername, dbPassword, dbName } from './config/secret';
+import { AuthorsModule } from './authors/authors.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { dbUsername, dbPassword, dbName } from './config/secret';
       synchronize: true,
     }),
     BlogsModule,
+    AuthorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
