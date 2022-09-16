@@ -9,38 +9,67 @@ import {
 } from '@nestjs/common';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { BlogsService } from './blogs.service';
-import { Blog } from './interfaces/blog.interface';
+import { Response } from './interfaces/response.interface';
 
 @Controller('blogs')
 export class BlogsController {
   constructor(private blogsService: BlogsService) {}
 
   @Get()
-  async findAll(): Promise<Blog[]> {
-    return this.blogsService.findAll();
+  async findAll(): Promise<Response> {
+    const blogs = await this.blogsService.findAll();
+    return {
+      status: 200,
+      data: {
+        blogs,
+      },
+    };
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Blog> {
-    return this.blogsService.findOne(id);
+  async findOne(@Param('id') id: number): Promise<Response> {
+    const blog = await this.blogsService.findOne(id);
+    return {
+      status: 200,
+      data: {
+        blog,
+      },
+    };
   }
 
   @Post()
-  async create(@Body() createBlogDto: CreateBlogDto): Promise<Blog> {
-    return this.blogsService.create(createBlogDto);
+  async create(@Body() createBlogDto: CreateBlogDto): Promise<Response> {
+    await this.blogsService.create(createBlogDto);
+    return {
+      status: 201,
+      data: {
+        message: 'New blog created successfully!',
+      },
+    };
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<any> {
-    console.log(await this.blogsService.delete(id));
-    return 'this.blogsService.delete(id)';
+  async delete(@Param('id') id: number): Promise<Response> {
+    await this.blogsService.delete(id);
+    return {
+      status: 200,
+      data: {
+        message: 'Blog deleted successfully!',
+      },
+    };
   }
 
   @Put(':id')
   async update(
     @Param('id') id: number,
     @Body() updateBlogDto: CreateBlogDto,
-  ): Promise<Blog> {
-    return this.blogsService.update(id, updateBlogDto);
+  ): Promise<Response> {
+    await this.blogsService.update(id, updateBlogDto);
+    return {
+      status: 200,
+      data: {
+        message: 'Blog deatils updated successfully!',
+      },
+    };
   }
 }
