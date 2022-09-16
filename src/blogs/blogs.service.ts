@@ -22,4 +22,8 @@ export class BlogsService {
   async create(blog: Blog): Promise<Blog> {
     return await this.blogsRepository.save(blog);
   }
+
+  async delete(id: number): Promise<any> {
+    return await this.blogsRepository.delete(id);
+  }
 }

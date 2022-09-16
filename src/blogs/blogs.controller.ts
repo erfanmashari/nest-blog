@@ -29,4 +29,10 @@ export class BlogsController {
   async create(@Body() createBlogDto: CreateBlogDto): Promise<Blog> {
     return this.blogsService.create(createBlogDto);
   }
+
+  @Delete(':id')
+  async delete(@Param('id') id: number): Promise<any> {
+    console.log(await this.blogsService.delete(id));
+    return 'this.blogsService.delete(id)';
+  }
 }
