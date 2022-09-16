@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BlogsModule } from './blogs/blogs.module';
 import { BlogEntity } from './blogs/blog.entity';
+import { dbUsername, dbPassword, dbName } from './config/secret';
 
 @Module({
   imports: [
@@ -11,9 +12,9 @@ import { BlogEntity } from './blogs/blog.entity';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: 'yT&45Vhx&M3%HV&8',
-      database: 'nest_blog',
+      username: dbUsername,
+      password: dbPassword,
+      database: dbName,
       entities: [BlogEntity],
       synchronize: true,
     }),
