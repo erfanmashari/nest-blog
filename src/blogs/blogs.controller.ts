@@ -35,4 +35,12 @@ export class BlogsController {
     console.log(await this.blogsService.delete(id));
     return 'this.blogsService.delete(id)';
   }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() updateBlogDto: CreateBlogDto,
+  ): Promise<Blog> {
+    return this.blogsService.update(id, updateBlogDto);
+  }
 }

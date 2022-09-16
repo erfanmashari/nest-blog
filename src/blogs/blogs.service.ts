@@ -26,4 +26,9 @@ export class BlogsService {
   async delete(id: number): Promise<any> {
     return await this.blogsRepository.delete(id);
   }
+
+  async update(id: number, blog: Blog): Promise<Blog> {
+    await this.blogsRepository.update(id, blog);
+    return blog;
+  }
 }
