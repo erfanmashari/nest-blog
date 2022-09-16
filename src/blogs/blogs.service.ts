@@ -73,14 +73,27 @@ export class BlogsService {
     return responseObject;
   }
 
-  async delete(id: number): Promise<APIResponse> {
+  async delete(id: number, response: Response): Promise<APIResponse> {
     const deleteBlog = await this.blogsRepository.delete(id);
-    return {
+
+    let responseObject: APIResponse = {
       status: 200,
       data: {
         message: 'Blog deleted successfully!',
       },
     };
+
+    if (!deleteBlog.affected) {
+      response.status(404);
+      responseObject = {
+        status: 404,
+        data: {
+          message: 'No blog found with this ID!',
+        },
+      };
+    }
+
+    return responseObject;
   }
 
   async update(id: number, blog: Blog): Promise<APIResponse> {

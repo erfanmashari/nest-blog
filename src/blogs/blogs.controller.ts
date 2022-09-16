@@ -39,8 +39,11 @@ export class BlogsController {
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<APIResponse> {
-    return await this.blogsService.delete(id);
+  async delete(
+    @Param('id') id: number,
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<APIResponse> {
+    return await this.blogsService.delete(id, response);
   }
 
   @Put(':id')
