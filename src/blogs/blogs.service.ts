@@ -15,6 +15,10 @@ export class BlogsService {
     return await this.blogsRepository.find();
   }
 
+  async findOne(id: number): Promise<BlogEntity> {
+    return await this.blogsRepository.findOneBy({ id: id });
+  }
+
   async create(blog: Blog): Promise<Blog> {
     return await this.blogsRepository.save(blog);
   }
