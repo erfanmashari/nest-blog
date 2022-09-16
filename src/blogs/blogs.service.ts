@@ -46,14 +46,31 @@ export class BlogsService {
     return responseObject;
   }
 
-  async create(blog: Blog): Promise<APIResponse> {
-    const createBlog = await this.blogsRepository.save(blog);
-    return {
+  async create(blog: Blog, response: Response): Promise<APIResponse> {
+    let responseObject: APIResponse = {
       status: 201,
       data: {
         message: 'New blog created successfully!',
       },
     };
+
+    if (
+      typeof blog.body === 'string' &&
+      typeof blog.snippet === 'string' &&
+      typeof blog.title === 'string'
+    ) {
+      await this.blogsRepository.save(blog);
+    } else {
+      response.status(406);
+      responseObject = {
+        status: 406,
+        data: {
+          message: 'Required informarmation not provided or have wrong type!',
+        },
+      };
+    }
+
+    return responseObject;
   }
 
   async delete(id: number): Promise<APIResponse> {

@@ -31,8 +31,11 @@ export class BlogsController {
   }
 
   @Post()
-  async create(@Body() createBlogDto: CreateBlogDto): Promise<APIResponse> {
-    return await this.blogsService.create(createBlogDto);
+  async create(
+    @Body() createBlogDto: CreateBlogDto,
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<APIResponse> {
+    return await this.blogsService.create(createBlogDto, response);
   }
 
   @Delete(':id')
