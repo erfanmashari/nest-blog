@@ -110,7 +110,7 @@ export class BlogsService {
     let responseObject: APIResponse = {
       status: 200,
       data: {
-        message: 'Blog deatils updated successfully!',
+        message: 'Blog details updated successfully!',
       },
     };
 
