@@ -1,6 +1,6 @@
 import { Blog } from './blog.interface';
 
-export interface Response {
+export interface APIResponse {
   status: number;
   data: {
     message?: string;
