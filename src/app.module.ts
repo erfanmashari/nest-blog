@@ -10,6 +10,7 @@ import { dbUsername, dbPassword, dbName } from './config/secret';
 import { AuthorsModule } from './authors/authors.module';
 import { join } from 'path';
 import { PetsModule } from './pets/pets.module';
+import { Pet } from './pets/pet.entity';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { PetsModule } from './pets/pets.module';
       username: dbUsername,
       password: dbPassword,
       database: dbName,
-      entities: [BlogEntity],
+      entities: [BlogEntity, Pet],
       synchronize: true,
     }),
     BlogsModule,
