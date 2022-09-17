@@ -11,3 +11,12 @@ type Pet {
 type Query {
   pets: [Pet!]!
 }
+
+type Mutation {
+  addPet(createPetDto: CreatePetDto!): Pet!
+}
+
+input CreatePetDto {
+  name: String!
+  type: String
+}
