@@ -11,6 +11,7 @@ import { AuthorsModule } from './authors/authors.module';
 import { join } from 'path';
 import { PetsModule } from './pets/pets.module';
 import { Pet } from './pets/pet.entity';
+import { OwnersModule } from './owners/owners.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { Pet } from './pets/pet.entity';
     BlogsModule,
     AuthorsModule,
     PetsModule,
+    OwnersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
