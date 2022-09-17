@@ -7,6 +7,6 @@ import { Owner } from './entities/owner.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Owner])],
   providers: [OwnersResolver, OwnersService],
-  exports: [TypeOrmModule],
+  exports: [OwnersService],
 })
 export class OwnersModule {}
