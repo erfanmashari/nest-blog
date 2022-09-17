@@ -12,6 +12,7 @@ import { join } from 'path';
 import { PetsModule } from './pets/pets.module';
 import { Pet } from './pets/pet.entity';
 import { OwnersModule } from './owners/owners.module';
+import { Owner } from './owners/entities/owner.entity';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { OwnersModule } from './owners/owners.module';
       username: dbUsername,
       password: dbPassword,
       database: dbName,
-      entities: [BlogEntity, Pet],
+      entities: [BlogEntity, Pet, Owner],
       synchronize: true,
     }),
     BlogsModule,
