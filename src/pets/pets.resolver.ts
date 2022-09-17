@@ -7,7 +7,7 @@ export class PetsResolver {
   constructor(private petsService: PetsService) {}
 
   @Query(() => [Pet])
-  async findAll(): Promise<Pet[]> {
+  async pets(): Promise<Pet[]> {
     return await this.petsService.findAll();
   }
 }

@@ -9,5 +9,5 @@ type Pet {
 }
 
 type Query {
-  findAll: [Pet!]!
+  pets: [Pet!]!
 }
